@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "632547003630",
+    "project_id": "historygenerator-5fff2",
+    "storage_bucket": "historygenerator-5fff2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:632547003630:android:e5eab4b2831a9f0ed1b7ff",
+        "android_client_info": {
+          "package_name": "com.abregujuancruz.historygenerator"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "632547003630-6n0t6s76a1sdi32mlorjv6cf9tfnk5d2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.abregujuancruz.historygenerator",
+            "certificate_hash": "1c3649b31d39e55da3ab28f8a740506906336fdf"
+          }
+        },
+        {
+          "client_id": "632547003630-1eea5p2j9k71sgt4qfcfaej0ctcl8v1f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA5D_CtBETH9nkBWu8imebnEWMjglWZd8A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "632547003630-1eea5p2j9k71sgt4qfcfaej0ctcl8v1f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
