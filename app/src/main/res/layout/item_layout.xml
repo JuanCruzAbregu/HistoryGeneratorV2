@@ -37,13 +37,13 @@
             android:maxLines="2"
             android:paddingHorizontal="16dp"
             android:paddingBottom="8dp"
-            android:textColor="#7F7F7F"
+            android:textColor="#546E7A"
             android:textStyle="italic"
-            tools:text="Description"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvLabel" />
+            app:layout_constraintTop_toBottomOf="@+id/tvLabel"
+            tools:text="Description" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

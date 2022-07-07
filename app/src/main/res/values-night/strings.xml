@@ -2,4 +2,5 @@
 <resources>
     <string name="generar">Generar</string>
     <string name="image">Image</string>
+    <string name="history">history</string>
 </resources>
