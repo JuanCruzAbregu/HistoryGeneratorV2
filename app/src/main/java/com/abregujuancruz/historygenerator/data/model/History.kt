@@ -1,4 +1,4 @@
-package com.abregujuancruz.historygenerator.model
+package com.abregujuancruz.historygenerator.data.model
 
 data class History(
     val label : String,

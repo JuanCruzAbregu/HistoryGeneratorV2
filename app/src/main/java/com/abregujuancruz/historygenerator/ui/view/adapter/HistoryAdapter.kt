@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.abregujuancruz.historygenerator.R
-import com.abregujuancruz.historygenerator.model.History
+import com.abregujuancruz.historygenerator.data.model.History
 
 class HistoryAdapter(private val dataList: ArrayList<History>) :
     RecyclerView.Adapter<HistoryViewHolder>() {

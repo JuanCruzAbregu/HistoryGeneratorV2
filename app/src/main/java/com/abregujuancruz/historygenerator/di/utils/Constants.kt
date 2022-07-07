@@ -1,4 +1,4 @@
-package com.abregujuancruz.historygenerator.utils
+package com.abregujuancruz.historygenerator.di.utils
 
 class Constants {
     

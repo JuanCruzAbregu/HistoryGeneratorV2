@@ -5,14 +5,16 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.abregujuancruz.historygenerator.databinding.ActivityMainBinding
-import com.abregujuancruz.historygenerator.model.History
+import com.abregujuancruz.historygenerator.data.model.History
 import com.abregujuancruz.historygenerator.ui.view.adapter.HistoryAdapter
 import com.abregujuancruz.historygenerator.ui.viewmodel.HistoryViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     
-    private lateinit var binding: ActivityMainBinding
     private val historyViewModel : HistoryViewModel by viewModels()
+    private lateinit var binding: ActivityMainBinding
     private lateinit var historyList : ArrayList<History>
     
     override fun onCreate(savedInstanceState: Bundle?) {

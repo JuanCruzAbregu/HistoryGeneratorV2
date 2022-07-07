@@ -1,6 +1,6 @@
-package com.abregujuancruz.historygenerator.network
+package com.abregujuancruz.historygenerator.data.network
 
-import com.abregujuancruz.historygenerator.model.HistoryResponse
+import com.abregujuancruz.historygenerator.data.model.HistoryResponse
 import retrofit2.Call
 import retrofit2.http.GET
 
