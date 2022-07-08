@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.abregujuancruz.historygenerator.R
 import com.abregujuancruz.historygenerator.data.model.History
 
-class HistoryAdapter(private val dataList: ArrayList<History>) :
+    class HistoryAdapter(private val dataList: ArrayList<History>) :
     RecyclerView.Adapter<HistoryViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HistoryViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
