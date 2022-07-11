@@ -4,9 +4,10 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.abregujuancruz.historygenerator.R
-import com.abregujuancruz.historygenerator.data.model.History
+import com.abregujuancruz.historygenerator.domain.model.HistoryDomain
 
-    class HistoryAdapter(private val dataList: ArrayList<History>) :
+
+class HistoryAdapter(private val dataList: List<HistoryDomain?>, private val value : Int) :
     RecyclerView.Adapter<HistoryViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HistoryViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -15,8 +16,12 @@ import com.abregujuancruz.historygenerator.data.model.History
     
     override fun onBindViewHolder(holder: HistoryViewHolder, position: Int) {
         val history = dataList[position]
-        holder.bind(history.label, history.data.random())
+        if (history != null) {
+            holder.bind(history.label, history.data, value)
+        }
     }
     
     override fun getItemCount(): Int = dataList.size
+    
+    
 }

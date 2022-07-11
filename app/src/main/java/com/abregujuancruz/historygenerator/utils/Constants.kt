@@ -1,9 +1,10 @@
-package com.abregujuancruz.historygenerator.di.utils
+package com.abregujuancruz.historygenerator.utils
 
 class Constants {
     
     companion object {
         const val BASE_URL = "https://historygenerator-5fff2-default-rtdb.firebaseio.com/"
+        const val DATABASE_NAME = "history_database"
     }
     
 }

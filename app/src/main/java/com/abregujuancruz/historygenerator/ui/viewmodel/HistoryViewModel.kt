@@ -4,41 +4,47 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.abregujuancruz.historygenerator.data.model.History
-import com.abregujuancruz.historygenerator.domain.LoadHistoriesUseCase
+import com.abregujuancruz.historygenerator.domain.GetHistoryUseCase
+import com.abregujuancruz.historygenerator.domain.model.HistoryDomain
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import javax.inject.Inject
 
 @HiltViewModel
 class HistoryViewModel @Inject constructor(
-    private val loadHistoriesUseCase: LoadHistoriesUseCase
+    private val getHistoryUseCase: GetHistoryUseCase
 ) : ViewModel() {
     
-    private val _historyData = MutableLiveData<ArrayList<History>?>()
-    val historyData: MutableLiveData<ArrayList<History>?> get() = _historyData
-    
+    private val _historyData = MutableLiveData<List<HistoryDomain>>()
+    val historyData: MutableLiveData<List<HistoryDomain>> get() = _historyData
+
     private val _visibility = MutableLiveData<Boolean>()
     val visibility: LiveData<Boolean> get() = _visibility
+    
+    private val _number = MutableLiveData<Int>()
+    val number: LiveData<Int> get() = _number
     
     fun getListOfHistories() {
         viewModelScope.launch {
             _visibility.value = true
-            loadHistoriesUseCase().enqueue(object : Callback<ArrayList<History>> {
-                override fun onResponse(
-                    call: Call<ArrayList<History>>,
-                    response: Response<ArrayList<History>>
-                ) {
-                    _historyData.value = response.body()
-                    _visibility.value = false
-                }
-                override fun onFailure(call: Call<ArrayList<History>>, t: Throwable) {
-                    _historyData.value = null
-                }
-            })
+            val result = getHistoryUseCase()
+            if(result.isNotEmpty()){
+                _historyData.value = result
+                _number.value = (0..9).random()
+                _visibility.value = false
+            }
         }
     }
+    
+    fun onCreate() {
+        viewModelScope.launch {
+            _visibility.value = false
+            val result = getHistoryUseCase()
+            if(result.isNotEmpty()){
+                _historyData.value = result
+                _number.value = (0..9).random()
+            }
+        }
+    }
+    
 }

@@ -1,11 +1,12 @@
 package com.abregujuancruz.historygenerator.di
 
 import com.abregujuancruz.historygenerator.data.network.HistoryAPI
-import com.abregujuancruz.historygenerator.di.utils.Constants
+import com.abregujuancruz.historygenerator.utils.Constants
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import retrofit2.CallAdapter
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton

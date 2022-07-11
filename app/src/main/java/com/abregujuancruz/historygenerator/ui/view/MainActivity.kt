@@ -6,42 +6,41 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.abregujuancruz.historygenerator.databinding.ActivityMainBinding
-import com.abregujuancruz.historygenerator.data.model.History
+import com.abregujuancruz.historygenerator.domain.model.HistoryDomain
 import com.abregujuancruz.historygenerator.ui.view.adapter.HistoryAdapter
 import com.abregujuancruz.historygenerator.ui.viewmodel.HistoryViewModel
 import dagger.hilt.android.AndroidEntryPoint
+
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     
     private val historyViewModel: HistoryViewModel by viewModels()
     private lateinit var binding: ActivityMainBinding
-    private lateinit var historyList: ArrayList<History>
+    private var listData: List<HistoryDomain> = emptyList()
+    private var number: Int = 0
     
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         
-        binding.btnGenerate.setOnClickListener {
-            historyViewModel.getListOfHistories()
-        }
-        
+        historyViewModel.onCreate()
+        historyViewModel.historyData.observe(this) { listData = it }
+        historyViewModel.number.observe(this) { number = it }
         historyViewModel.visibility.observe(this) {
             binding.shimmerLayout.visibility = if (it) View.VISIBLE else View.GONE
-            binding.rvHistory.visibility = if(it) View.GONE else View.VISIBLE
+            binding.rvHistory.visibility = if (it) View.GONE else View.VISIBLE
         }
         
-        historyViewModel.historyData.observe(this) {
-            if (it != null) {
-                historyList = it
-            }
-            initRecyclerView(historyList)
+        binding.btnGenerate.setOnClickListener {
+            historyViewModel.getListOfHistories()
+            initRecyclerView(listData, number)
         }
     }
     
-    private fun initRecyclerView(historyList: ArrayList<History>) {
-        binding.rvHistory.adapter = HistoryAdapter(historyList)
+    private fun initRecyclerView(historyList: List<HistoryDomain>, value: Int) {
+        binding.rvHistory.adapter = HistoryAdapter(historyList, value)
         binding.rvHistory.layoutManager = LinearLayoutManager(this)
     }
 }

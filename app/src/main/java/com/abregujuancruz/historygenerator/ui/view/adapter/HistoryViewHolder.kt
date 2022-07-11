@@ -8,9 +8,8 @@ class HistoryViewHolder(view : View) : RecyclerView.ViewHolder(view) {
     
     private val binding = ItemLayoutBinding.bind(view)
     
-    fun bind(label : String, description : String){
+    fun bind(label: String, description: List<String>, value : Int){
         binding.tvLabel.text = label
-        binding.tvDescription.text = description
+        binding.tvDescription.text = description[value]
     }
-    
 }
