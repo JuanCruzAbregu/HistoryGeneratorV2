@@ -1,6 +1,8 @@
 package com.abregujuancruz.historygenerator.data.model
 
+import com.google.gson.annotations.SerializedName
+
 data class History(
-    val label : String,
-    val data : List<String>
+    @SerializedName("label") val label : String,
+    @SerializedName("data")    val data : List<String>
 )

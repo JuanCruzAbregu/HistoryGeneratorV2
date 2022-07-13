@@ -17,32 +17,40 @@ class HistoryViewModel @Inject constructor(
     
     private val _historyData = MutableLiveData<List<HistoryDomain>>()
     val historyData: MutableLiveData<List<HistoryDomain>> get() = _historyData
-
+    
     private val _visibility = MutableLiveData<Boolean>()
     val visibility: LiveData<Boolean> get() = _visibility
     
-    private val _number = MutableLiveData<Int>()
-    val number: LiveData<Int> get() = _number
+    private val _descriptionList = MutableLiveData<ArrayList<String>>()
+    val descriptionList: LiveData<ArrayList<String>> get() = _descriptionList
     
     fun getListOfHistories() {
         viewModelScope.launch {
             _visibility.value = true
             val result = getHistoryUseCase()
-            if(result.isNotEmpty()){
+            if (result.isNotEmpty()) {
                 _historyData.value = result
-                _number.value = (0..9).random()
+                _descriptionList.value = listRandom(result)
                 _visibility.value = false
             }
         }
+    }
+    
+    private fun listRandom(result: List<HistoryDomain>) : ArrayList<String> {
+        val listRandom = ArrayList<String>()
+        for(items in result) {
+            listRandom.add(items.data.random())
+        }
+        return listRandom
     }
     
     fun onCreate() {
         viewModelScope.launch {
             _visibility.value = false
             val result = getHistoryUseCase()
-            if(result.isNotEmpty()){
+            if (result.isNotEmpty()) {
                 _historyData.value = result
-                _number.value = (0..9).random()
+                _descriptionList.value = listRandom(result)
             }
         }
     }
