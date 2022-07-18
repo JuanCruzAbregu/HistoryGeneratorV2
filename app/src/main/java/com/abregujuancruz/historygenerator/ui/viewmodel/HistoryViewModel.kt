@@ -30,29 +30,18 @@ class HistoryViewModel @Inject constructor(
             val result = getHistoryUseCase()
             if (result.isNotEmpty()) {
                 _historyData.value = result
-                _descriptionList.value = listRandom(result)
+                _descriptionList.value = setRandomDescription(result)
                 _visibility.value = false
             }
         }
     }
-    
-    private fun listRandom(result: List<HistoryDomain>) : ArrayList<String> {
-        val listRandom = ArrayList<String>()
-        for(items in result) {
-            listRandom.add(items.data.random())
+
+    private fun setRandomDescription(result: List<HistoryDomain>): ArrayList<String> {
+        val randomList = ArrayList<String>()
+        for (items in result) {
+            randomList.add(items.data.random())
         }
-        return listRandom
-    }
-    
-    fun onCreate() {
-        viewModelScope.launch {
-            _visibility.value = false
-            val result = getHistoryUseCase()
-            if (result.isNotEmpty()) {
-                _historyData.value = result
-                _descriptionList.value = listRandom(result)
-            }
-        }
+        return randomList
     }
     
 }

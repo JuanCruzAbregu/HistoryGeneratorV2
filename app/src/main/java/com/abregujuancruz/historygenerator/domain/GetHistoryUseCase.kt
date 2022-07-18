@@ -6,13 +6,13 @@ import com.abregujuancruz.historygenerator.domain.model.HistoryDomain
 import javax.inject.Inject
 
 class GetHistoryUseCase @Inject constructor(
-    private val repository : HistoryRepository
+    private val repository: HistoryRepository
 ) {
     
-    suspend operator fun invoke() : List<HistoryDomain>{
+    suspend operator fun invoke(): List<HistoryDomain> {
         val histories = repository.getAllHistoryDataFromApi()
         
-        return if(histories.isNotEmpty()){
+        return if (histories.isNotEmpty()) {
             repository.clearHistoryData()
             repository.insertHistoryData(histories.map { it.toDatabase() })
             histories
