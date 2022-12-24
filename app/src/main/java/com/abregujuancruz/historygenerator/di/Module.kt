@@ -1,20 +1,34 @@
 package com.abregujuancruz.historygenerator.di
 
+import android.content.Context
+import androidx.room.Room
+import com.abregujuancruz.historygenerator.data.database.HistoryDatabase
 import com.abregujuancruz.historygenerator.data.network.HistoryAPI
 import com.abregujuancruz.historygenerator.utils.Constants
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
-import retrofit2.CallAdapter
+import javax.inject.Singleton
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object RetrofitModule {
+object Module {
     
+    @Singleton
+    @Provides
+    fun providesRoom(@ApplicationContext context : Context) =
+        Room.databaseBuilder(context, HistoryDatabase::class.java,
+            Constants.DATABASE_NAME)
+            .build()
+    
+    @Singleton
+    @Provides
+    fun provideHistoryDao(db: HistoryDatabase) = db.getHistoryDao()
+
     @Singleton
     @Provides
     fun providesRetrofit(): Retrofit {
@@ -23,7 +37,7 @@ object RetrofitModule {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
-    
+
     @Singleton
     @Provides
     fun providesHistoryApi(retrofit: Retrofit): HistoryAPI {
