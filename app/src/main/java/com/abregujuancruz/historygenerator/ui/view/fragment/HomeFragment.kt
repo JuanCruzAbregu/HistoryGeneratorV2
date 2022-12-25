@@ -15,7 +15,10 @@ import com.abregujuancruz.historygenerator.ui.view.composables.models.HomeCompos
 import com.abregujuancruz.historygenerator.ui.view.composables.screen.HomeScreenComposable
 import com.abregujuancruz.historygenerator.ui.viewmodel.HomeFragmentViewModel
 import com.abregujuancruz.historygenerator.utils.setContentView
+import dagger.hilt.android.AndroidEntryPoint
 
+
+@AndroidEntryPoint
 class HomeFragment : Fragment(R.layout.fragment_home) {
 
     private lateinit var binding: FragmentHomeBinding

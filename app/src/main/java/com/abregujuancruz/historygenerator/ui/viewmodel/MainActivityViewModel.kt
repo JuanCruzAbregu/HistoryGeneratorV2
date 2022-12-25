@@ -5,8 +5,8 @@ import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.abregujuancruz.historygenerator.data.database.entities.HistoryEntity
 import com.abregujuancruz.historygenerator.domain.GetHistoryUseCase
-import com.abregujuancruz.historygenerator.domain.model.HistoryDomain
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -16,8 +16,8 @@ class MainActivityViewModel @Inject constructor(
     private val getHistoryUseCase: GetHistoryUseCase
 ) : ViewModel() {
     
-    private val _historyData = MutableLiveData<List<HistoryDomain>>()
-    val historyData: MutableLiveData<List<HistoryDomain>> get() = _historyData
+    private val _historyData = MutableLiveData<List<HistoryEntity>>()
+    val historyData: MutableLiveData<List<HistoryEntity>> get() = _historyData
     
     private val _visibility = MutableLiveData<Boolean>()
     val visibility: LiveData<Boolean> get() = _visibility
@@ -49,7 +49,7 @@ class MainActivityViewModel @Inject constructor(
         }
     }
 
-    private fun setRandomDescription(result: List<HistoryDomain>): ArrayList<String> {
+    private fun setRandomDescription(result: List<HistoryEntity>): ArrayList<String> {
         val randomList = ArrayList<String>()
         for (items in result) {
             randomList.add(items.data.random())

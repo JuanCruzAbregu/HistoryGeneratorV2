@@ -7,7 +7,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.abregujuancruz.historygenerator.R
 import com.abregujuancruz.historygenerator.databinding.FragmentInfoBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class InfoFragment : Fragment(R.layout.fragment_info) {
 
     private lateinit var binding: FragmentInfoBinding
