@@ -1,4 +1,4 @@
-package com.abregujuancruz.historygenerator.ui.view.composables
+package com.abregujuancruz.historygenerator.ui.view.composables.banners
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer

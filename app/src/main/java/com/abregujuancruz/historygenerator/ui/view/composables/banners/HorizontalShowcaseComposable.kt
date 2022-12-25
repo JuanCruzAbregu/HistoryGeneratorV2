@@ -1,4 +1,4 @@
-package com.abregujuancruz.historygenerator.ui.view.composables
+package com.abregujuancruz.historygenerator.ui.view.composables.banners
 
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -12,14 +12,15 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.abregujuancruz.historygenerator.R
 import com.abregujuancruz.historygenerator.ui.view.composables.models.HorizontalShowcaseModel
+import com.abregujuancruz.historygenerator.ui.view.composables.models.IdeasRectangleBannerModel
 
 @Composable
 fun HorizontalShowcaseComposable(
-    horizontalShowcaseModel: HorizontalShowcaseModel
-){
-    if (horizontalShowcaseModel.bannerList.isNotEmpty()) {
+    horizontalShowcaseModel: HorizontalShowcaseModel?
+) {
+    if (!horizontalShowcaseModel?.bannerList.isNullOrEmpty()) {
         val horizontalMarginLong = 56.dp
-        val bannerList = horizontalShowcaseModel.bannerList
+        val bannerList = horizontalShowcaseModel?.bannerList
         val listState = rememberLazyListState()
         LazyColumn(
             state = listState,
@@ -30,14 +31,11 @@ fun HorizontalShowcaseComposable(
                     end = 16.dp
                 )
         ) {
-            val lastIndex = bannerList.size - 1
-            items(count = bannerList.size,
+            val lastIndex = bannerList!!.size - 1
+            items(
+                count = bannerList.size,
             ) { item ->
-                Spacer(
-                    modifier = Modifier.height(
-                        8.dp
-                    )
-                )
+                Spacer(modifier = Modifier.height(8.dp))
                 IdeasRectangleComposable(
                     ideasRectangleBannerModel = bannerList[item]
                 )
@@ -47,15 +45,37 @@ fun HorizontalShowcaseComposable(
             }
         }
     }
-
 }
 
 @Preview
 @Composable
-fun HorizontalShowcaseComposablePreview(){
+fun HorizontalShowcaseComposablePreview() {
+    val bannerList = listOf(
+        IdeasRectangleBannerModel(
+            label = "Label",
+            description = "Description"
+        ),
+        IdeasRectangleBannerModel(
+            label = "Label",
+            description = "Description"
+        ),
+        IdeasRectangleBannerModel(
+            label = "Label",
+            description = "Description"
+        ),
+        IdeasRectangleBannerModel(
+            label = "Label",
+            description = "Description"
+        ),
+        IdeasRectangleBannerModel(
+            label = "Label",
+            description = "Description"
+        )
+    )
+
     val model = HorizontalShowcaseModel(
         startIcon = R.drawable.ic_baseline_android_24,
-        bannerList = emptyList()
+        bannerList = bannerList
     )
 
     HorizontalShowcaseComposable(horizontalShowcaseModel = model)

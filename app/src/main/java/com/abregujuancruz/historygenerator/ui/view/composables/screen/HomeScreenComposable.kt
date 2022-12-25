@@ -1,32 +1,46 @@
-package com.abregujuancruz.historygenerator.ui.view.composables
+package com.abregujuancruz.historygenerator.ui.view.composables.screen
 
+import androidx.compose.foundation.layout.Column
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import com.abregujuancruz.historygenerator.R
 import com.abregujuancruz.historygenerator.ui.theme.HistoryDesignTheme
+import com.abregujuancruz.historygenerator.ui.view.composables.banners.HeaderHomeBanner
+import com.abregujuancruz.historygenerator.ui.view.composables.banners.HorizontalShowcaseComposable
+import com.abregujuancruz.historygenerator.ui.view.composables.models.HeaderHomeBannerModel
 import com.abregujuancruz.historygenerator.ui.view.composables.models.HomeComposableState
+import com.abregujuancruz.historygenerator.ui.view.composables.models.HomeComposableState.EmptyHomeComposableModel
 import com.abregujuancruz.historygenerator.ui.view.composables.models.HomeComposableState.FirstLoad
 import com.abregujuancruz.historygenerator.ui.view.composables.models.HomeComposableState.HomeComposableModel
 import com.abregujuancruz.historygenerator.ui.view.composables.models.HorizontalShowcaseModel
 import com.abregujuancruz.historygenerator.ui.view.composables.models.IdeasRectangleBannerModel
-import com.abregujuancruz.historygenerator.ui.view.composables.models.ToolbarModel
+import com.abregujuancruz.historygenerator.ui.view.composables.toolbar.ToolbarComposable
 
 @Composable
-fun HomeComposable(homeComposableState: HomeComposableState) {
+fun HomeScreenComposable(
+    homeComposableState: HomeComposableState
+) {
     HistoryDesignTheme {
         when (homeComposableState) {
             is FirstLoad -> {
                 //TODO: PlaceHolder
             }
             is HomeComposableModel -> {
-                ToolbarComposable(
-                    toolbarModel = homeComposableState
-                        .toolbarModel
-                )
-                //TODO: ADD BUTTON
-                HorizontalShowcaseComposable(
-                    horizontalShowcaseModel = homeComposableState
-                        .horizontalShowcaseModel
+                Column {
+                    ToolbarComposable()
+                    HeaderHomeBanner(
+                        headerHomeBannerModel = homeComposableState
+                            .headerHomeBannerModel
+                    )
+                    HorizontalShowcaseComposable(
+                        horizontalShowcaseModel = homeComposableState
+                            .horizontalShowcaseModel
+                    )
+                }
+            }
+            is EmptyHomeComposableModel -> {
+                EmptyHomeScreenComposable(
+                    emptyHomeComposableState = homeComposableState
                 )
             }
         }
@@ -35,7 +49,7 @@ fun HomeComposable(homeComposableState: HomeComposableState) {
 
 @Preview
 @Composable
-fun HomeComposablePreview() {
+fun HomeScreenComposablePreview() {
     val bannerList = listOf(
         IdeasRectangleBannerModel(
             label = "label",
@@ -60,13 +74,13 @@ fun HomeComposablePreview() {
     )
 
     val model = HomeComposableModel(
-        toolbarModel = ToolbarModel(
-            infoIcon = { }
-        ),
         horizontalShowcaseModel = HorizontalShowcaseModel(
             bannerList = bannerList,
             startIcon = R.drawable.ic_baseline_android_24
+        ),
+        headerHomeBannerModel = HeaderHomeBannerModel(
+            generateHistory = { }
         )
     )
-    HomeComposable(homeComposableState = model)
+    HomeScreenComposable(homeComposableState = model)
 }

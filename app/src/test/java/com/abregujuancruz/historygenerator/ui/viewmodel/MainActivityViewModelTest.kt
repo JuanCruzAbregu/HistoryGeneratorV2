@@ -17,11 +17,11 @@ import org.junit.Rule
 import org.junit.Test
 
 @ExperimentalCoroutinesApi
-class HistoryViewModelTest {
+class MainActivityViewModelTest {
     
     @RelaxedMockK
     private lateinit var getHistoryUseCase: GetHistoryUseCase
-    private lateinit var historyViewModel: HistoryViewModel
+    private lateinit var mainActivityViewModel: MainActivityViewModel
     
     @get:Rule
     var rule: InstantTaskExecutorRule = InstantTaskExecutorRule()
@@ -29,7 +29,7 @@ class HistoryViewModelTest {
     @Before
     fun onBefore() {
         MockKAnnotations.init(this)
-        historyViewModel = HistoryViewModel(getHistoryUseCase)
+        mainActivityViewModel = MainActivityViewModel(getHistoryUseCase)
         Dispatchers.setMain(Dispatchers.Unconfined)
     }
     
@@ -52,11 +52,11 @@ class HistoryViewModelTest {
             coEvery { getHistoryUseCase() } returns fakeHistoryList
             
             //When
-            historyViewModel.getListOfHistories()
+            mainActivityViewModel.getListOfHistories()
             
             //Then
-            assert(historyViewModel.historyData.value == fakeHistoryList)
-            assert(historyViewModel.descriptionList.value != fakeDataList)
+            assert(mainActivityViewModel.historyData.value == fakeHistoryList)
+            assert(mainActivityViewModel.descriptionList.value != fakeDataList)
         }
     
     @Test
@@ -68,14 +68,14 @@ class HistoryViewModelTest {
             HistoryDomain("Label2", fakeDataList),
             HistoryDomain("Label3", fakeDataList)
         )
-        historyViewModel.historyData.value = fakeHistoryList
+        mainActivityViewModel.historyData.value = fakeHistoryList
         coEvery { getHistoryUseCase() } returns emptyList()
         
         //When
         getHistoryUseCase()
         
         //Then
-        assert(historyViewModel.historyData.value == fakeHistoryList)
+        assert(mainActivityViewModel.historyData.value == fakeHistoryList)
         
     }
 }

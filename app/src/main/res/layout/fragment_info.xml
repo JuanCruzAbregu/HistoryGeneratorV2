@@ -5,18 +5,18 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@android:color/holo_red_dark">
+        android:background="@color/red_b71c1c">
 
         <androidx.compose.ui.platform.ComposeView
-            android:id="@+id/compose_view_home"
+            android:id="@+id/cview_info"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
 
+        </androidx.compose.ui.platform.ComposeView>
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 </layout>

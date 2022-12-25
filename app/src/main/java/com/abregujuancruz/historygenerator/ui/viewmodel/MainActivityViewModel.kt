@@ -1,6 +1,7 @@
 package com.abregujuancruz.historygenerator.ui.viewmodel
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -11,7 +12,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class HistoryViewModel @Inject constructor(
+class MainActivityViewModel @Inject constructor(
     private val getHistoryUseCase: GetHistoryUseCase
 ) : ViewModel() {
     
@@ -23,6 +24,18 @@ class HistoryViewModel @Inject constructor(
     
     private val _descriptionList = MutableLiveData<ArrayList<String>>()
     val descriptionList: LiveData<ArrayList<String>> get() = _descriptionList
+
+    private val _bottomNavigationId: MutableLiveData<BottomNavigationId> =
+        MutableLiveData()
+
+    val currentBottomNavigationId: LiveData<BottomNavigationConfig?> =
+        MediatorLiveData<BottomNavigationConfig?>().apply {
+            addSource(_bottomNavigationId) { navId ->
+                value = navId?.let {
+                    BottomNavigationConfig(it)
+                }
+            }
+        }
     
     fun getListOfHistories() {
         viewModelScope.launch {
@@ -43,5 +56,18 @@ class HistoryViewModel @Inject constructor(
         }
         return randomList
     }
+
+    fun setCurrentScreen(currentScreen: BottomNavigationId) {
+        if (_bottomNavigationId.value != currentScreen) {
+            _bottomNavigationId.value = currentScreen
+        }
+    }
+
+    data class BottomNavigationConfig(
+        val bottomNavSelectedId: BottomNavigationId
+    )
+
+    @JvmInline
+    value class BottomNavigationId(val id: Int)
     
 }
