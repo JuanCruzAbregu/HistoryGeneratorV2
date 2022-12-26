@@ -4,6 +4,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverters
+import com.abregujuancruz.historygenerator.domain.model.HistoryDomain
 
 @Entity(tableName = "history_table")
 @TypeConverters
@@ -13,4 +14,6 @@ data class HistoryEntity(
     @ColumnInfo(name = "label") val label: String,
     @ColumnInfo(name = "data") val data: List<String>
 )
+
+fun HistoryDomain.toDatabase() = HistoryEntity(label = label, data =  data)
 

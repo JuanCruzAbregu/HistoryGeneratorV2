@@ -12,7 +12,7 @@ import com.abregujuancruz.historygenerator.R
 import com.abregujuancruz.historygenerator.databinding.FragmentHomeBinding
 import com.abregujuancruz.historygenerator.ui.view.composables.models.HomeComposableState
 import com.abregujuancruz.historygenerator.ui.view.composables.models.HomeComposableState.FirstLoad
-import com.abregujuancruz.historygenerator.ui.view.composables.screen.HomeScreenComposable
+import com.abregujuancruz.historygenerator.ui.view.composables.screen.home.HomeScreenComposable
 import com.abregujuancruz.historygenerator.ui.viewmodel.HomeFragmentViewModel
 import com.abregujuancruz.historygenerator.utils.setContentView
 import dagger.hilt.android.AndroidEntryPoint

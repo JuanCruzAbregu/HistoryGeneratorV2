@@ -10,17 +10,16 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.abregujuancruz.historygenerator.R
 import com.abregujuancruz.historygenerator.ui.view.composables.models.HorizontalShowcaseModel
 import com.abregujuancruz.historygenerator.ui.view.composables.models.IdeasRectangleBannerModel
 
 @Composable
 fun HorizontalShowcaseComposable(
-    horizontalShowcaseModel: HorizontalShowcaseModel?
+    horizontalShowcaseModel: HorizontalShowcaseModel
 ) {
-    if (!horizontalShowcaseModel?.bannerList.isNullOrEmpty()) {
-        val horizontalMarginLong = 56.dp
-        val bannerList = horizontalShowcaseModel?.bannerList
+    if (horizontalShowcaseModel.bannerList.isNotEmpty()) {
+        val horizontalMarginLong = 16.dp
+        val bannerList = horizontalShowcaseModel.bannerList
         val listState = rememberLazyListState()
         LazyColumn(
             state = listState,
@@ -31,7 +30,7 @@ fun HorizontalShowcaseComposable(
                     end = 16.dp
                 )
         ) {
-            val lastIndex = bannerList!!.size - 1
+            val lastIndex = bannerList.size - 1
             items(
                 count = bannerList.size,
             ) { item ->
@@ -74,7 +73,6 @@ fun HorizontalShowcaseComposablePreview() {
     )
 
     val model = HorizontalShowcaseModel(
-        startIcon = R.drawable.ic_baseline_android_24,
         bannerList = bannerList
     )
 

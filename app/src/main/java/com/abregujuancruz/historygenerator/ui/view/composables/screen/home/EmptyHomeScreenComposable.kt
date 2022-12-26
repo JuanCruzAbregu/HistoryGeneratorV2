@@ -1,4 +1,4 @@
-package com.abregujuancruz.historygenerator.ui.view.composables.screen
+package com.abregujuancruz.historygenerator.ui.view.composables.screen.home
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
