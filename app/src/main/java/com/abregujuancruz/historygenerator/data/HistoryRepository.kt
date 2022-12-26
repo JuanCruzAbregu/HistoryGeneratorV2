@@ -17,12 +17,12 @@ class HistoryRepository @Inject constructor(
         val response: List<History> = apiService.getHistoryData()
         return response.map { it.toDomain() }
     }
-    
+
     suspend fun getAllHistoryDataFromDatabase(): List<HistoryDomain> {
         val response: List<HistoryEntity> = historyDao.getAllHistoryData()
         return response.map { it.toDomain() }
     }
-    
+
     suspend fun insertHistoryData(historyList: List<HistoryEntity>) {
         historyDao.insertAllData(historyList)
     }

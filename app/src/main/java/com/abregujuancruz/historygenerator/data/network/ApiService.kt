@@ -7,11 +7,9 @@ import javax.inject.Inject
 
 class ApiService @Inject constructor(private val historyApi: HistoryAPI) {
     
-    suspend fun getHistoryData(): List<History> {
-        return withContext(Dispatchers.IO) {
+    suspend fun getHistoryData(): List<History> =
+        withContext(Dispatchers.IO) {
             val response = historyApi.getHistories()
             response.body() ?: emptyList()
         }
-    }
-    
 }

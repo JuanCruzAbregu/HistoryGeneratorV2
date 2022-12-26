@@ -8,13 +8,13 @@ import com.abregujuancruz.historygenerator.data.database.entities.HistoryEntity
 
 @Dao
 interface HistoryDao {
-    
+
     @Query("SELECT * FROM history_table")
-    suspend fun getAllHistoryData():List<HistoryEntity>
-    
+    suspend fun getAllHistoryData(): List<HistoryEntity>
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertAllData(quotes:List<HistoryEntity>)
-    
+    suspend fun insertAllData(historyData: List<HistoryEntity>)
+
     @Query("DELETE FROM history_table")
     suspend fun deleteAllData()
 }

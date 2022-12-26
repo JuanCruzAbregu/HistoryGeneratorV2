@@ -7,7 +7,7 @@ import com.abregujuancruz.historygenerator.data.database.dao.HistoryDao
 import com.abregujuancruz.historygenerator.utils.Converters
 import com.abregujuancruz.historygenerator.data.database.entities.HistoryEntity
 
-@Database(entities = [HistoryEntity::class], version = 1)
+@Database(entities = [HistoryEntity::class], version = 2)
 @TypeConverters(Converters::class)
 abstract class HistoryDatabase : RoomDatabase() {
     
