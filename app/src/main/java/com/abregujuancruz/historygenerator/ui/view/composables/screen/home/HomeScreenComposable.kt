@@ -18,9 +18,7 @@ fun HomeScreenComposable(
     HistoryDesignTheme {
         when (homeComposableState) {
             is FirstLoad -> {
-                EmptyHomeScreenComposable(
-                    emptyHomeComposableState = homeComposableState
-                )
+                HomePlaceHolderComposable()
             }
             is HomeComposableModel -> {
                 NonEmptyScreenComposable(
@@ -85,4 +83,10 @@ fun EmptyScreenComposablePreview() {
     EmptyHomeScreenComposable(
         emptyHomeComposableState = model
     )
+}
+
+@Preview
+@Composable
+fun HomePlaceHolderComposablePreview() {
+   HomePlaceHolderComposable()
 }

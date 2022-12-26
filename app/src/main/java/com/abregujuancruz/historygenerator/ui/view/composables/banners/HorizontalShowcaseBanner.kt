@@ -14,7 +14,7 @@ import com.abregujuancruz.historygenerator.ui.view.composables.models.Horizontal
 import com.abregujuancruz.historygenerator.ui.view.composables.models.IdeasRectangleBannerModel
 
 @Composable
-fun HorizontalShowcaseComposable(
+fun HorizontalShowcaseBanner(
     horizontalShowcaseModel: HorizontalShowcaseModel
 ) {
     if (horizontalShowcaseModel.bannerList.isNotEmpty()) {
@@ -35,7 +35,7 @@ fun HorizontalShowcaseComposable(
                 count = bannerList.size,
             ) { item ->
                 Spacer(modifier = Modifier.height(8.dp))
-                IdeasRectangleComposable(
+                IdeasItemBanner(
                     ideasRectangleBannerModel = bannerList[item]
                 )
                 if (item == lastIndex) {
@@ -48,7 +48,7 @@ fun HorizontalShowcaseComposable(
 
 @Preview
 @Composable
-fun HorizontalShowcaseComposablePreview() {
+fun HorizontalShowcaseBannerPreview() {
     val bannerList = listOf(
         IdeasRectangleBannerModel(
             label = "Label",
@@ -76,5 +76,5 @@ fun HorizontalShowcaseComposablePreview() {
         bannerList = bannerList
     )
 
-    HorizontalShowcaseComposable(horizontalShowcaseModel = model)
+    HorizontalShowcaseBanner(horizontalShowcaseModel = model)
 }

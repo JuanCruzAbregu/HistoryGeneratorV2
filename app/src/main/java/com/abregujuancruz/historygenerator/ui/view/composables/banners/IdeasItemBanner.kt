@@ -20,7 +20,7 @@ import com.abregujuancruz.historygenerator.ui.theme.HistoryDesignTheme
 import com.abregujuancruz.historygenerator.ui.view.composables.models.IdeasRectangleBannerModel
 
 @Composable
-fun IdeasRectangleComposable(
+fun IdeasItemBanner(
     ideasRectangleBannerModel: IdeasRectangleBannerModel
 ) {
     HistoryDesignTheme {
@@ -56,11 +56,11 @@ fun IdeasRectangleComposable(
 
 @Preview
 @Composable
-fun IdeasRectangleComposablePreview() {
+fun IdeasItemBannerPreview() {
     val model = IdeasRectangleBannerModel(
         label = "Label",
         description = "Description"
     )
 
-    IdeasRectangleComposable(ideasRectangleBannerModel = model)
+    IdeasItemBanner(ideasRectangleBannerModel = model)
 }
