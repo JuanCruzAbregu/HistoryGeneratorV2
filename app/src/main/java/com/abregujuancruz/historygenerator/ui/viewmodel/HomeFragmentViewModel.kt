@@ -54,7 +54,9 @@ class HomeFragmentViewModel @Inject constructor(
         } else {
         return HomeComposableModel(
             headerHomeBannerModel = HeaderHomeBannerModel(
-                generateHistory = { getListOfHistories() }
+                //generateHistory = { getListOfHistories() }
+                generateHistory = {  }
+
             ),
             horizontalShowcaseModel = HorizontalShowcaseModel(
                 bannerList = buildHorizontalBanner(_historyData.value)
