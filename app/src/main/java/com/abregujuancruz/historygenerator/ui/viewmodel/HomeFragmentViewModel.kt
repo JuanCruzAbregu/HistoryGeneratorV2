@@ -40,7 +40,7 @@ class HomeFragmentViewModel @Inject constructor(
     private fun setHomeComposableState() {
         job?.cancel()
         job = viewModelScope.launch {
-                _homeComposableState.value = buildHomeComposableModel()
+            _homeComposableState.value = buildHomeComposableModel()
         }
     }
 
@@ -52,14 +52,14 @@ class HomeFragmentViewModel @Inject constructor(
                 )
             )
         } else {
-            HomeComposableModel(
-                headerHomeBannerModel = HeaderHomeBannerModel(
-                    generateHistory = { getListOfHistories() }
-                ),
-                horizontalShowcaseModel = HorizontalShowcaseModel(
-                    bannerList = buildHorizontalBanner(_historyData.value)
-                )
+        return HomeComposableModel(
+            headerHomeBannerModel = HeaderHomeBannerModel(
+                generateHistory = { getListOfHistories() }
+            ),
+            horizontalShowcaseModel = HorizontalShowcaseModel(
+                bannerList = buildHorizontalBanner(_historyData.value)
             )
+        )
         }
     }
 

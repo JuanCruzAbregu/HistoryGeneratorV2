@@ -10,14 +10,12 @@ class GetHistoryUseCase @Inject constructor(
 ) {
     
     suspend operator fun invoke(): List<HistoryDomain> {
-        val histories = repository.getAllHistoryDataFromApi()
-
-        return if (histories.isNotEmpty()) {
+        val histories = repository.getAllHistoryDataFromDatabase()
+        return histories.ifEmpty {
+            repository.getAllHistoryDataFromApi()
             repository.clearHistoryData()
             repository.insertHistoryData(histories.map { it.toDatabase() })
             histories
-        } else {
-            repository.getAllHistoryDataFromDatabase()
         }
     }
 }

@@ -11,8 +11,8 @@ import com.abregujuancruz.historygenerator.domain.model.HistoryDomain
 data class HistoryEntity(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id") val id: Int = 0,
-    @ColumnInfo(name = "label") val label: String,
-    @ColumnInfo(name = "data") val data: List<String>
+    @ColumnInfo(name = "label") val label: String = "",
+    @ColumnInfo(name = "data") val data: List<String> = emptyList()
 )
 
 fun HistoryDomain.toDatabase() = HistoryEntity(label = label, data =  data)
