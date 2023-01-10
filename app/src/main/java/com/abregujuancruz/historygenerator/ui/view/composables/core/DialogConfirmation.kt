@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.material.Button
 import androidx.compose.material.Card
 import androidx.compose.material.OutlinedButton
 import androidx.compose.material.Text
@@ -21,67 +22,80 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.window.Dialog
+import androidx.compose.ui.window.DialogProperties
 import com.abregujuancruz.historygenerator.ui.theme.HistoryDesignTheme
 import com.abregujuancruz.historygenerator.ui.theme.Shapes
-import com.abregujuancruz.historygenerator.ui.view.composables.core.models.ConfirmDialogModel
+import com.abregujuancruz.historygenerator.utils.Actionable
 
 @Composable
 fun DialogConfirmation(
-    confirmDialogModel: ConfirmDialogModel
+    title: String,
+    description: String,
+    onDismiss: Actionable,
+    onConfirm: Actionable
 ) {
     HistoryDesignTheme {
-        Card(
-            elevation = 8.dp,
-            modifier = Modifier
-                .height(180.dp),
-            shape = Shapes.medium
+        Dialog(
+            onDismissRequest = { onDismiss() },
+            properties = DialogProperties(
+                dismissOnBackPress = false,
+                dismissOnClickOutside = false,
+            )
         ) {
-            Column(
-                horizontalAlignment = Alignment.CenterHorizontally,
+            Card(
+                elevation = 8.dp,
                 modifier = Modifier
-                    .padding(16.dp)
-                    .fillMaxWidth()
+                    .height(180.dp),
+                shape = Shapes.medium
             ) {
-                Text(
-                    text = confirmDialogModel.title,
-                    fontSize = 18.sp,
-                    textAlign = TextAlign.Center,
-                    fontWeight = FontWeight.Bold
-                )
-                Spacer(modifier = Modifier.height(16.dp))
-                Text(
-                    text = confirmDialogModel.description,
-                    fontSize = 14.sp,
-                    textAlign = TextAlign.Center
-                )
-                Box(
-                    contentAlignment = Alignment.BottomCenter,
+                Column(
+                    horizontalAlignment = Alignment.CenterHorizontally,
                     modifier = Modifier
-                        .fillMaxHeight()
+                        .padding(16.dp)
+                        .fillMaxWidth()
                 ) {
-                    Row(
-                        verticalAlignment = Alignment.CenterVertically,
+                    Text(
+                        text = title,
+                        fontSize = 18.sp,
+                        textAlign = TextAlign.Center,
+                        fontWeight = FontWeight.Bold
+                    )
+                    Spacer(modifier = Modifier.height(16.dp))
+                    Text(
+                        text = description,
+                        fontSize = 14.sp,
+                        textAlign = TextAlign.Center
+                    )
+                    Box(
+                        contentAlignment = Alignment.BottomCenter,
                         modifier = Modifier
-                            .fillMaxWidth()
-                            .wrapContentHeight()
+                            .fillMaxHeight()
                     ) {
-                        OutlinedButton(
+                        Row(
+                            verticalAlignment = Alignment.CenterVertically,
                             modifier = Modifier
+                                .fillMaxWidth()
                                 .wrapContentHeight()
-                                .weight(0.5f),
-                            onClick = { confirmDialogModel.onDismiss }
                         ) {
-                            Text(text = "Cancelar")
-                        }
-                        Spacer(modifier = Modifier.width(16.dp))
+                            OutlinedButton(
+                                modifier = Modifier
+                                    .wrapContentHeight()
+                                    .weight(0.5f),
+                                onClick = { onDismiss() }
+                            ) {
+                                Text(text = "Cancelar")
+                            }
+                            Spacer(modifier = Modifier.width(16.dp))
 
-                        OutlinedButton(
-                            modifier = Modifier
-                                .weight(0.5f)
-                                .wrapContentHeight(),
-                            onClick = { confirmDialogModel.onConfirm }
-                        ) {
-                            Text(text = "Confirmar")
+                            Button(
+                                modifier = Modifier
+                                    .weight(0.5f)
+                                    .wrapContentHeight(),
+                                onClick = { onConfirm() }
+                            ) {
+                                Text(text = "Confirmar")
+                            }
                         }
                     }
                 }
@@ -93,13 +107,11 @@ fun DialogConfirmation(
 @Preview
 @Composable
 fun PreviewDialogConfirmation() {
-    val model = ConfirmDialogModel(
+    DialogConfirmation(
         title = "Generar nuevas ideas",
         description = "¿Está seguro que desea generar nuevas ideas? " +
             "Los datos anteriores se perderán.",
-        onConfirm = {},
-        onDismiss = {}
+        onDismiss = {},
+        onConfirm = {}
     )
-    DialogConfirmation(confirmDialogModel = model)
 }
-

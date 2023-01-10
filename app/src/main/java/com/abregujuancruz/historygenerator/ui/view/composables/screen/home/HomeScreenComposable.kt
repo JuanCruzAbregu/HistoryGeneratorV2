@@ -64,9 +64,9 @@ fun HomeScreenComposablePreview() {
         horizontalShowcaseModel = HorizontalShowcaseModel(
             bannerList = bannerList,
         ),
-        headerHomeBannerModel = HeaderHomeBannerModel(
+        /*headerHomeBannerModel = HeaderHomeBannerModel(
             generateHistory = { }
-        )
+        )*/
     )
     HomeScreenComposable(homeComposableState = model)
 }

@@ -52,16 +52,15 @@ class HomeFragmentViewModel @Inject constructor(
                 )
             )
         } else {
-        return HomeComposableModel(
-            headerHomeBannerModel = HeaderHomeBannerModel(
-                //generateHistory = { getListOfHistories() }
-                generateHistory = {  }
+            return HomeComposableModel(
+                /*headerHomeBannerModel = HeaderHomeBannerModel(
+                    generateHistory = {  }
 
-            ),
-            horizontalShowcaseModel = HorizontalShowcaseModel(
-                bannerList = buildHorizontalBanner(_historyData.value)
+                ),*/
+                horizontalShowcaseModel = HorizontalShowcaseModel(
+                    bannerList = buildHorizontalBanner(_historyData.value)
+                )
             )
-        )
         }
     }
 
