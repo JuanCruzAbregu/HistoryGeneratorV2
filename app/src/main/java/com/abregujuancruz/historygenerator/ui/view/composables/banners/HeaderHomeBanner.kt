@@ -39,7 +39,7 @@ fun HeaderHomeBanner(
                     .height(40.dp),
             ) {
                 Text(
-                    text = "Generar",
+                    text = "Hola",
                     fontSize = 14.sp,
                     fontWeight = FontWeight.Bold
                 )
